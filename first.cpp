@@ -6,14 +6,14 @@ inline bool bufGetBit(char *buf, int index){
 	int iByte = index/8; // byte index
 	int iBit  = index%8; // bit index in the byte
 	bool bit  = buf[iByte]&(0b10000000>>iBit);
-	printf ("bufGetBit   %d %d %d   \n", iByte, iBit, bit);
+	//printf ("bufGetBit   %d %d %d   \n", iByte, iBit, bit);
 	return bit;
 }
 
 inline void bufSetBit(char *buf, int index, bool bit){
 	int iByte = index/8; // byte index
 	int iBit  = index%8; // bit index in the byte
-	printf ("bufSetBit   %d %d %d   \n", iByte, iBit, bit);
+	//printf ("bufSetBit   %d %d %d   \n", iByte, iBit, bit);
 	if(bit) 
 		buf[iByte] |=  (0b10000000>>iBit); // set bit
 	else
@@ -25,14 +25,13 @@ inline void bufSetBit(char *buf, int index, bool bit){
 // index - from right to left
 bool dataVerifyLen(int len){
 	if(len<0 || len>sizeof(short)*8) {
-		printf("Wrong len value: %d\n",len); 
-		return false;
+		throw "Wrong len value"; 
 	}
 	return true;
 }
 inline bool dataGetBit(unsigned short data, int index){
 	bool bit  = data & 1<<index;
-	printf ("dataGetBit   %d %d   ", index, bit);
+	//printf ("dataGetBit   %d %d   ", index, bit);
 	return bit;
 }
 

@@ -19,3 +19,5 @@ start и len задается в битах, start = 0 – младший бит
 first.cpp - задание 1
 
 second.cpp - задание 2
+
+main.cpp - тесты для обеих задач

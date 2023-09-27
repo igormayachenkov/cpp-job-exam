@@ -1,4 +1,3 @@
-//#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "first.h"
@@ -14,6 +13,7 @@ void printBuf(char *buf, int len){
 		putchar(((i+1)%8)?' ':'\n'); // 8 numbers in a row
 	}
     putchar('\n');
+	putchar('\n');
 }
 void printBuf(Buffer &buffer){printBuf(buffer.buf, buffer.size);}
 
@@ -23,7 +23,7 @@ void printData(short val){
 	for(int k=0; k<16; k++){
 		putchar((val & mask)?'1':'0');
 		mask=mask>>1;
-	}		
+	}	
 }
 
 int main(void){
@@ -35,39 +35,48 @@ int main(void){
 	//--------------------------------------
 	// TASK 1 TEST
 	printf("-------------- task 1 -------------------\n");
+	try{
 
-	// Initial buffer
-	printBuf(buf, size);
+		// Initial buffer
+		printf("initial buffer:\n");
+		printBuf(buf, size);
 
-	// Get data test
-	data = getdata(buf,start,len);
-	printf ("getdata(buf, start=%d, len=%d) => %d   ", start, len, data);
-	printData(data);
-    putchar('\n');
+		// Get data test
+		data = getdata(buf,start,len);
+		printf ("getdata(buf, start=%d, len=%d)   =>  %d   ", start, len, data);
+		printData(data); 	putchar('\n');
 
-	// Put data test
-	putdata(buf,start,len,data);
-	
-	// Final buffer
-	printBuf(buf, size); 
+
+		// Put data test
+		putdata(buf,start,len,data);
+		printf ("putdata(buf, start=%d, len=%d, data= %d   ", start, len, data);
+		printData(data); 	printf(" )\n\n");
+
+
+		// Final buffer
+		printf("final buffer:\n");
+		printBuf(buf, size); 
+	}catch(const char* error){
+		printf("\nERROR: %s\n",error);
+	}
 
 
 	//--------------------------------------
 	// TASK 2 TEST
-	printf("-------------- task 2 -------------------\n");
+	printf("\n-------------- task 2 -------------------\n");
 	try{
 		Package package(buf, size);
-		printf("base buffer\n");
+		printf("base buffer:\n");
 		printBuf(buf, size);
-		printf("package.header\n");
+		printf("package.header:\n");
 		printBuf(package.header);
-		printf("package.fixed\n");
+		printf("package.fixed:\n");
 		printBuf(package.fixed);
-		printf("package.body\n");
+		printf("package.body:\n");
 		printBuf(package.body);
 
 		Package package2(package,1);
-		printf("package2.header\n");
+		printf("package2.header:\n");
 		printBuf(package2.header);
 
 	}catch(const char* error){
