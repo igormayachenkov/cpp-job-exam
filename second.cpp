@@ -13,3 +13,5 @@ Package::Package(char *buf, int size):
     printf("Package(buf, size=%d)\n",size);
 }
 
+Package::Package(Package &package, int offset):
+    Package(package.buffer.buf+offset, package.buffer.size-offset) {}

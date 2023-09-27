@@ -65,6 +65,11 @@ int main(void){
 		printBuf(package.fixed);
 		printf("package.body\n");
 		printBuf(package.body);
+
+		Package package2(package,1);
+		printf("package2.header\n");
+		printBuf(package2.header);
+
 	}catch(const char* error){
 		printf("\nERROR: %s\n",error);
 	}

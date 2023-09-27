@@ -15,4 +15,5 @@ public:
     Buffer fixed;
     Buffer body;
     Package(char *buf, int size);
+    Package(Package &package, int offset);
 };
