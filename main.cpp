@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "first.h"
+#include "second.h"
 
 
 void printBuf(char *buf, int len){
@@ -14,6 +15,8 @@ void printBuf(char *buf, int len){
 	}
     putchar('\n');
 }
+void printBuf(Buffer &buffer){printBuf(buffer.buf, buffer.size);}
+
 
 void printData(short val){
 	unsigned short mask=0b1000000000000000;
@@ -25,10 +28,16 @@ void printData(short val){
 
 int main(void){
 	char buf[]="Hello world!";
+	int size = sizeof(buf);
 	int start=13, len=13;
 	short data;
 
-	printBuf(buf, strlen(buf));
+	//--------------------------------------
+	// TASK 1 TEST
+	printf("-------------- task 1 -------------------\n");
+
+	// Initial buffer
+	printBuf(buf, size);
 
 	// Get data test
 	data = getdata(buf,start,len);
@@ -38,9 +47,26 @@ int main(void){
 
 	// Put data test
 	putdata(buf,start,len,data);
-//	putdata(buf,start,len,0xffff);
 	
-	printBuf(buf, strlen(buf));
+	// Final buffer
+	printBuf(buf, size); 
+
+
+	//--------------------------------------
+	// TASK 2 TEST
+	printf("-------------- task 2 -------------------\n");
+	Package package(buf, size);
+	printf("initial buffer\n");
+	printBuf(buf, size);
+	printf("package.header\n");
+	printBuf(package.header);
+	printf("package.fixed\n");
+	printBuf(package.fixed);
+	printf("package.body\n");
+	printBuf(package.body);
+	
+
+
 
     return 0;
 }
