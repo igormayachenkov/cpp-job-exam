@@ -55,18 +55,19 @@ int main(void){
 	//--------------------------------------
 	// TASK 2 TEST
 	printf("-------------- task 2 -------------------\n");
-	Package package(buf, size);
-	printf("initial buffer\n");
-	printBuf(buf, size);
-	printf("package.header\n");
-	printBuf(package.header);
-	printf("package.fixed\n");
-	printBuf(package.fixed);
-	printf("package.body\n");
-	printBuf(package.body);
-	
-
-
+	try{
+		Package package(buf, size);
+		printf("base buffer\n");
+		printBuf(buf, size);
+		printf("package.header\n");
+		printBuf(package.header);
+		printf("package.fixed\n");
+		printBuf(package.fixed);
+		printf("package.body\n");
+		printBuf(package.body);
+	}catch(const char* error){
+		printf("\nERROR: %s\n",error);
+	}
 
     return 0;
 }
