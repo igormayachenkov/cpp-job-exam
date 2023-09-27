@@ -15,7 +15,7 @@ void printBuf(char *buf, int len){
     putchar('\n');
 }
 
-void printShort(short val){
+void printData(short val){
 	unsigned short mask=0b1000000000000000;
 	for(int k=0; k<16; k++){
 		putchar((val & mask)?'1':'0');
@@ -25,18 +25,22 @@ void printShort(short val){
 
 int main(void){
 	char buf[]="Hello world!";
+	int start=13, len=13;
+	short data;
 
 	printBuf(buf, strlen(buf));
 
-	int start=13, len=13;
-	short data;
+	// Get data test
 	data = getdata(buf,start,len);
 	printf ("getdata(buf, start=%d, len=%d) => %d   ", start, len, data);
-//	data=data&0xffff;
-	//data = 0xffff>>0x000a;
-	//data = 0b0010101100001111;
-	printShort(data);
+	printData(data);
     putchar('\n');
+
+	// Put data test
+	putdata(buf,start,len,data);
+//	putdata(buf,start,len,0xffff);
+	
+	printBuf(buf, strlen(buf));
 
     return 0;
 }
